@@ -1,13 +1,13 @@
 #include <stdio.h>
 
 int main(){
-    
     //Declaração de variáveis de ambas cartas
-    int pontos, pontos2, escolhaJogador;
+    int pontos, pontos2, escolhaJogador, escolhaJogador2;
     unsigned int populacao, populacao2;
-    float area, pib, area2, pib2, densidade, pibpc, densidade2, pibpc2, superpoder, superpoder2;
+    float area, pib, area2, pib2, densidade, pibpc, densidade2, pibpc2, superpoder, superpoder2, primeiroAtributo, segundoAtributo, 
+    primeiroAtributo2, segundoAtributo2, somaAtributos, somaAtributos2;
 
-
+    ///*
     //CRIAÇÃO DE VARIAVEIS TIPO STRING
     char estado[20]; 
     char codigo[20]; 
@@ -63,7 +63,7 @@ int main(){
  
     printf("Numero de pontos turisticos:\n");
     scanf("%d", &pontos2);
-   
+    //*/
  
     /*
     
@@ -131,7 +131,7 @@ int main(){
     printf("Super Poder: %.2f\n", superpoder2);
 
     //JOGADOR ESCOLHE O ATRIBUTO DE COMPARAÇÃO
-    printf("\n### ESCOLHA O ATRIBUTO ###\n");
+    printf("\n### ESCOLHA O PRIMEIRO ATRIBUTO ###\n");
     printf("1 - Populacao\n");
     printf("2 - Area\n");
     printf("3 - PIB\n");
@@ -140,76 +140,107 @@ int main(){
     printf("ESCOLHA:\n");
     scanf("%d", &escolhaJogador);
 
+    //JOGADOR ESCOLHE O SEGUNDO ATRIBUTO DE COMPARAÇÃO
+    printf("\n### ESCOLHA O SEGUNDO ATRIBUTO ###\n");
+    printf("1 - Populacao\n");
+    printf("2 - Area\n");
+    printf("3 - PIB\n");
+    printf("4 - Pontos turisticos\n");
+    printf("5 - Densidade populacional\n");
+    printf("ESCOLHA:\n");
+    scanf("%d", &escolhaJogador2);
+
     //IMPRIME O NOME DAS CIDADES
     printf("\n### Carta 1 - %s x Carta 2 - %s ###\n", cidade, cidade2);
-    
-    //IDENTIFICA E IMPRIME A ESCOLHA DO JOGADOR
-    switch (escolhaJogador)
+
+    //IMPRIME A ESCOLHA DOS ATRIBUTOS E OS VALORES
+    if (escolhaJogador == escolhaJogador2) 
     {
-    case 1: //ATRIBUTO POPULACAO
-        printf("Atributo escolhido: Populacao\n");
-        printf("[CARTA 1] Populacao - %u x [CARTA 2] Populacao - %u\n", populacao, populacao2);
-        if (populacao == populacao2){
-            printf("O JOGO EMPATOU!\n");
-        }else if (populacao > populacao2)
+        printf("Você escolheu o mesmo Atributo!\n");
+    } else {
+        switch (escolhaJogador)
         {
-            printf("CARTA 1 VENCEU!\n");
-        }else{
-            printf("CARTA 2 VENCEU!\n");
-        }        
-        break;
-    case 2: //ATRIBUTO AREA
-        printf("Atributo escolhido: Area\n");
-        printf("[CARTA 1] Area - %.2f x [CARTA 2] Area - %.2f\n", area, area2);
-        if (area == area2){
-            printf("O JOGO EMPATOU!\n");
-        }else if (area > area2)
-        {
-            printf("CARTA 1 VENCEU!\n");
-        }else{
-            printf("CARTA 2 VENCEU!\n");
-        }        
-        break;
-    case 3: //ATRIBUTO PIB
-        printf("Atributo escolhido: PIB\n");
-        printf("[CARTA 1] PIB - %.2f x [CARTA 2] PIB - %.2f\n", pib, pib2);
-        if (pib == pib2){
-            printf("O JOGO EMPATOU!\n");
-        }else if (pib > pib2)
-        {
-            printf("CARTA 1 VENCEU!\n");
-        }else{
-            printf("CARTA 2 VENCEU!\n");
+        case 1: //ATRIBUTO POPULACAO
+            printf("Primeiro Atributo: \n[CARTA1]Populacao: %u - [CARTA2]Populacao: %u\n", populacao, populacao2);
+            primeiroAtributo = populacao;
+            segundoAtributo = populacao2;
+            printf("CARTA - %s VENCEU!\n", (populacao > populacao2) ? cidade : cidade2);
+            break;
+        case 2: //ATRIBUTO AREA
+            printf("Primeiro Atributo: \n[CARTA1]Area %.2f - [CARTA2]Area %.2f\n", area, area2);
+            primeiroAtributo = area;
+            segundoAtributo = area2;
+            printf("CARTA - %s VENCEU!\n", (area > area2) ? cidade : cidade2);
+            break;
+        case 3: //ATRIBUTO PIB
+            printf("Primeiro Atributo: \n[CARTA1]PIB %.2f - [CARTA2]PIB %.2f\n", pib, pib2);
+            primeiroAtributo = pib;
+            segundoAtributo = pib2;
+            printf("CARTA - %s VENCEU!\n", (pib > pib2) ? cidade : cidade2);
+            break;
+        case 4: //ATRIBUTO PONTOS TURISTICOS
+            printf("Primeiro Atributo: \n[CARTA1]Pontos Turisticos %d - [CARTA2]Pontos Turisticos %d\n" , pontos, pontos2);
+            primeiroAtributo = pontos;
+            segundoAtributo = pontos2;
+            printf("CARTA - %s VENCEU!\n", (pontos > pontos2) ? cidade : cidade2);
+            break;
+        case 5: //ATRIBUTO DENSIDADE POPULACIONAL
+            printf("Primeiro Atributo: \n[CARTA1]Densidade Populacional %.2f - [CARTA2]Densidade Populacional %.2f\n", densidade, densidade2);
+            primeiroAtributo = densidade;
+            segundoAtributo = densidade2;
+            printf("CARTA - %s VENCEU!\n", (densidade < densidade2) ? cidade : cidade2);
+            break;
+        default:
+            printf("Escolha Invalida!");
+            break;
         }
-        break;
-    case 4: //PONTOS TURISTICOS
-        printf("Atributo escolhido: Pontos turisticos\n");
-        printf("[CARTA 1] Pontos turisticos - %d x [CARTA 2] Pontos turisticos - %d\n", pontos, pontos2);
-        if (pontos == pontos2){
-            printf("O JOGO EMPATOU!\n");
-        }else if (pontos > pontos2)
+        switch (escolhaJogador2)
         {
-            printf("CARTA 1 VENCEU!\n");
-        }else{
-            printf("CARTA 2 VENCEU!\n");
+        case 1: //ATRIBUTO POPULACAO
+            printf("Segundo Atributo: \n[CARTA1]Populacao: %u - [CARTA2]Populacao: %u\n", populacao, populacao2);
+            primeiroAtributo2 = populacao;
+            segundoAtributo2 = populacao2;
+            printf("CARTA - %s VENCEU!\n", (populacao > populacao2) ? cidade : cidade2);
+            break;
+        case 2: //ATRIBUTO AREA
+            printf("Segundo Atributo: \n[CARTA1]Area %.2f - [CARTA2]Area %.2f\n", area, area2);
+            primeiroAtributo2 = area;
+            segundoAtributo2 = area2;
+            printf("CARTA - %s VENCEU!\n", (area > area2) ? cidade : cidade2);
+            break;
+        case 3: //ATRIBUTO PIB
+            printf("Segundo Atributo: \n[CARTA1]PIB %.2f - [CARTA2]PIB %.2f\n", pib, pib2);
+            primeiroAtributo2 = pib;
+            segundoAtributo2 = pib2;
+            printf("CARTA - %s VENCEU!\n", (pib > pib2) ? cidade : cidade2);
+            break;
+        case 4: //ATRIBUTO PONTOS TURISTICOS
+            printf("Segundo Atributo: \n[CARTA1]Pontos Turisticos %d - [CARTA2]Pontos Turisticos %d\n" , pontos, pontos2);
+            primeiroAtributo2 = pontos;
+            segundoAtributo2 = pontos2;
+            printf("CARTA - %s VENCEU!\n", (pontos > pontos2) ? cidade : cidade2);
+            break;
+        case 5: //ATRIBUTO DENSIDADE POPULACIONAL
+            printf("Segundo Atributo: \n[CARTA1]Densidade Populacional %.2f - [CARTA2]Densidade Populacional %.2f\n", densidade, densidade2);
+            primeiroAtributo2 = densidade;
+            segundoAtributo2 = densidade2;
+            printf("CARTA - %s VENCEU!\n", (densidade < densidade2) ? cidade : cidade2);
+            break;
+        default:
+            printf("Escolha Invalida!\n");
+            break;
         }
-        break;
-    case 5: //ATRIBUTO DENSIDADE POPULACIONAL
-        printf("Atributo escolhido: Densidade populacional\n");
-        printf("[CARTA 1] Densidade populacional - %d x [CARTA 2] Densidade populacional - %d\n", densidade, densidade2);
-        if (densidade == densidade2){
-            printf("O JOGO EMPATOU!\n");
-        }else if (densidade < densidade2)
-        {
-            printf("CARTA 1 VENCEU!\n");
-        }else{
-            printf("CARTA 2 VENCEU!\n");
-        }
-        break;
-    
-    default:
-        printf("Escolha invalida!\n");
-        break;
     }
+
+    //SOMA OS DOIS ATRIBUTOS DAS DUAS CARTAS
+    somaAtributos = primeiroAtributo + primeiroAtributo2; // SOMA DA CARTA 1
+    somaAtributos2 = segundoAtributo + segundoAtributo2; // SOMA DA CARTA 2
+
+    //IMPRIME A SOMA DOS ATRIBUTOS
+    printf("\n[CARTA 1] PODER: %.2f - [CARTA 2] PODER: %2.f\n", somaAtributos, somaAtributos2);
+
+    //IMPRIME O RESULTADO DA COMPARAÇÃO DAS SOMAS DOS ATRIBUTOS
+    printf("CARTA: %s VENCEU\n", (somaAtributos > somaAtributos2) ? cidade : cidade2);
+
     return 0;
 }
